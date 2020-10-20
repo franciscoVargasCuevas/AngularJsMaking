@@ -1,0 +1,94 @@
+Francisco Vargas Cuevas
+<!DOCTYPE html>
+
+<html ng-app="calenM">
+<head>
+	<style type="text/css">
+	
+
+		table{
+            width:100%;
+            border: 2px solid black;
+            padding: 2px;
+            background-color: #F0F3F7;
+        }
+        th, td{
+            padding: 1rem; 
+            text-align:center;
+            border: 2px solid black;
+            padding: 2px;
+            color: black;
+
+        }
+        tr{
+            color: black;
+        }
+        h4{
+            border-radius: 50px;
+            
+        }
+        button{
+            background-color: #2296D8;
+            border-radius: 100px;
+        }
+        thead{
+            background-color: #347BDC;
+            color: white;
+        }
+        .pseudolink { 
+            color:black; 
+            text-decoration:underline; 
+            cursor:pointer; 
+        }
+    .today{
+        font-weigth: 700;
+        background-color: yellow;
+        border-radius: 50px;
+    }
+	
+
+	</style>
+	<meta charset="UTF-8">
+	<title>Calendario Francisco</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<script src="controller.js"></script>
+	<script src="http://ui-grid.info/release/ui-grid.js"></script>
+	<link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+</head>
+   	<body>
+
+
+   	    <div ng-controller="TableController as t">
+            <p><b> - Para poder editar una vez agregado un registro, presionar doble click.</p>
+            <p><b> - Para visualizar tu recordatorio, unicamente pasa el mouse por encima del evento ya creado.</p>
+            <h1>{{t.mes_nombre}} {{t.anio}}</h1>
+        <div class="widget">
+        <a href="Clima.html"> <button >IR AL CLIMA</button></a>
+         </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dom</th>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mie</th>
+                        <th>Jue</th>
+                        <th>Vie</th>
+                        <th>Sab</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <div>
+                <tr ng-repeat="week in t.semanas" >
+                    <td ng-repeat="dia in week track by $index"
+                        ng-class="{'today':(dia==t.hoy)}">
+                    <h4 class="pseudolink" id="{{dia}}" ondblclick="doubleClick(this)" onmouseover="viewData(this)" onclick="go(this); return false;">{{dia}}</h4>
+                    </td>
+                </tr>
+            </div>
+            </tbody>
+            </table>
+    
+        </div>
+	</body>
+</html>
